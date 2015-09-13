@@ -1,7 +1,7 @@
 # Atom-SFTP
 A guide to connect atom.io to Umich's CAEN computers.
 
-This is a guide to set up atom\/SFTP and how to connect it to UMich's CAEN computers. It will also show you how to ssh into CAEN by terminal and compile there. So you won't need to use the VNC at all. This is how I do it in OS X and it should also work for GNU\\Linux systems. *Sorry Windows users...*
+This is a guide to set up atom/SFTP and how to connect it to UMich's CAEN computers. It will also show you how to ssh into CAEN by terminal and compile there. So you won't need to use the VNC at all. This is how I do it in OS X and it should also work for GNU\\Linux systems. *Sorry Windows users...*
 
 
 ## Backgorund (skip this if you just want to get started)
