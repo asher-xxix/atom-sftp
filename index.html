@@ -1,40 +1,128 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Atom-sftp : A guide to connect atom.io to Umich&#39;s CAEN computers.">
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Atom-sftp by lunete</title>
+    <title>Atom-sftp</title>
   </head>
 
   <body>
 
-    <header>
-      <div class="container">
-        <h1>Atom-sftp</h1>
-        <h2>A guide to connect atom.io to Umich&#39;s CAEN computers.</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/lunete/atom-sftp">View on GitHub</a>
 
-        <section id="downloads">
-          <a href="https://github.com/lunete/atom-sftp/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/lunete/atom-sftp/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/lunete/atom-sftp" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+          <h1 id="project_title">Atom-sftp</h1>
+          <h2 id="project_tagline">A guide to connect atom.io to Umich&#39;s CAEN computers.</h2>
 
-    <div class="container">
-      <section id="main_content">
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/lunete/atom-sftp/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/lunete/atom-sftp/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
-<a id="atom-sftp" class="anchor" href="#atom-sftp" aria-hidden="true"><span class="octicon octicon-link"></span></a>atom-sftp</h1>
+<a id="atom-sftp" class="anchor" href="#atom-sftp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Atom-SFTP</h1>
 
 <p>A guide to connect atom.io to Umich's CAEN computers.</p>
+
+<p>This is a guide to set up atom\/SFTP and how to connect it to UMich's CAEN computers. It will also show you how to ssh into CAEN by terminal and compile there. So you won't need to use the VNC at all. This is how I do it in OS X and it should also work for GNU\Linux systems. <em>Sorry Windows users...</em></p>
+
+<h2>
+<a id="backgorund-skip-this-if-you-just-want-to-get-started" class="anchor" href="#backgorund-skip-this-if-you-just-want-to-get-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Backgorund (skip this if you just want to get started)</h2>
+
+<p>After just starting EECS 280 I saw on piazza how to set up SFTP with Sublime Text so that you don't need a type of virtual machine of a CAEN computer. Specifically <a href="http://rdxiang.github.io/programming/sublime-sftp/">Rachel Xiang's guide</a>. So she deserves a lot of credit for bringing this to my attention.</p>
+
+<p>Since I don't have Sublime, but the FOSS equivalent - atom, I made this guide detailing the small differences of setting up SFTP on it. Atom is more enjoyable to work in than gedit on UMich's Linux computers (you should still get familiar with gedit though) and keeps things looking pretty while you build them.</p>
+
+<p><strong>In short:</strong> With this guide you should be able to write in atom build in a CAEN environment from the comfort of your own computer!</p>
+
+<hr>
+
+<h2>
+<a id="setup-sftp" class="anchor" href="#setup-sftp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup SFTP</h2>
+
+<h4>
+<a id="1-get-atom" class="anchor" href="#1-get-atom" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Get Atom!</h4>
+
+<p>Choose the correct download from <a href="https://atom.io/">their website here</a> and install so you're set to go!</p>
+
+<h4>
+<a id="2-get-sftp-deployment" class="anchor" href="#2-get-sftp-deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Get SFTP-deployment</h4>
+
+<p>Atom comes built-in with a package manager, so you can download and install packages just by going in the settings by <code>Atom</code> -&gt; <code>Preferences...</code> or <code>⌘,</code> or <code>command-,</code> and selecting <code>Install</code>. Then search for <code>sftp</code>. It should look something like this</p>
+
+<p><img src="/images/2015/09/Screen%20Shot%202015-09-12%20at%2011.25.38%20PM.png" alt=""></p>
+
+<p>You want to instal <code>SFTP-deployment</code>. Just click the install button and it's applied!</p>
+
+<h4>
+<a id="3-choose-the-folder-with-the-contents-you-want-to-synchronize" class="anchor" href="#3-choose-the-folder-with-the-contents-you-want-to-synchronize" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Choose the folder with the contents you want to synchronize</h4>
+
+<p>If haven't already, open your project folder in atom. This is by <code>File</code> -&gt; <code>Add Project Folder...</code> or <code>⇧⌘O</code> or <code>shift-command-O</code>. The folder and its contents should show up in the sidebar.</p>
+
+<h4>
+<a id="4-setup-sftp" class="anchor" href="#4-setup-sftp" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Setup SFTP</h4>
+
+<p>Now that you're in the folder you want to sync, generate the configuration file with <code>⌘⇧P</code> (to open atom's search) and searching <code>mapToRemote</code>. Choose that and then select <code>SFTP</code>. Now a JSON file should be generated! It should be <code>deployment-config.json</code>. Change the file to look like this:</p>
+
+<pre><code>{
+    "type": "sftp",
+    "host": "login.engin.umich.edu",
+    "username": "uniquename",
+    "password": "umichPassword",
+    "port": "22",
+    "remotePath": "/path/to/project/folder",
+    "uploadOnSave": true
+}
+</code></pre>
+
+<p>With <code>uniquename</code> and <code>umichPassword</code> replaced with your own umich login credentials. The <code>remotePath</code> should be the path to the folder on the CAEN computer that you want your files synced and saved to. To note, the CAEN home directory path is <code>/home/uniquename/</code>. From there you can get to folders like <code>Documents</code>, <code>Downloads</code>, and the like. Save when you're satisfied.</p>
+
+<p>There are some other settings that can be added and then modified, but you'll have to search and read up on those.</p>
+
+<h4>
+<a id="5-make-sure-it-works" class="anchor" href="#5-make-sure-it-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Make sure it works!</h4>
+
+<p>Now right click on your folder in the sidebar in atom. There should be an option for <code>FTP\SFTP</code>. From there choose <code>Upload selection</code>. In the top right of the editor it should say <code>Upload success</code>.</p>
+
+<hr>
+
+<h2>
+<a id="ssh-to-caen" class="anchor" href="#ssh-to-caen" aria-hidden="true"><span class="octicon octicon-link"></span></a>SSH to CAEN</h2>
+
+<p>This part is super simple. Just open your terminal and type <code>ssh uniquename@login.engin.umich.edu</code> you will then be prompted for your password. Then you're in.</p>
+
+<p>Remember the bash commands <code>ls</code> to list the files of the directory you are in, <code>pwd</code> to show your current file path, and <code>cd</code> to change directory. You can also use <code>cat</code> to view the contents of a file.</p>
+
+<p>Navigate to the folder you synced your files to and compile with <code>g++ yourFile.cpp -o blah</code> from there. You can run the program with <code>./blah</code> just like in your normal terminal.</p>
+
+<p>Type <code>exit</code> at any time to cancel out of the ssh.</p>
+
+<h1>
+<a id="you-did-it-great-job" class="anchor" href="#you-did-it-great-job" aria-hidden="true"><span class="octicon octicon-link"></span></a>You did it! Great job!</h1>
       </section>
     </div>
 
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Atom-sftp maintained by <a href="https://github.com/lunete">lunete</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
