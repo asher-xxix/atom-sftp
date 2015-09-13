@@ -21,7 +21,7 @@ Choose the correct download from [their website here](https://atom.io/) and inst
 
 Atom comes built-in with a package manager, so you can download and install packages just by going in the settings by `Atom` -> `Preferences...` or `⌘,` or `command-,` and selecting `Install`. Then search for `sftp`. It should look something like this
 
-![](/images/2015/09/Screen Shot 2015-09-12 at 11.25.38 PM.png)
+![](Screen Shot 2015-09-12 at 11.25.38 PM.png)
 
 You want to instal `SFTP-deployment`. Just click the install button and it's applied!
 
