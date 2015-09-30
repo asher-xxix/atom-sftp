@@ -4,7 +4,7 @@ A guide to connect atom.io to Umich's CAEN computers.
 This is a guide to set up atom/SFTP and how to connect it to UMich's CAEN computers. It will also show you how to ssh into CAEN by terminal and compile there. So you won't need to use the VNC at all. This is how I do it in OS X and it should also work for GNU\\Linux systems. *Sorry Windows users...*
 
 
-## Backgorund (skip this if you just want to get started)
+## Background (skip this if you just want to get started)
 After just starting EECS 280 I saw on piazza how to set up SFTP with Sublime Text so that you don't need a type of virtual machine of a CAEN computer. Specifically [Rachel Xiang's guide](http://rdxiang.github.io/programming/sublime-sftp/). So she deserves a lot of credit for bringing this to my attention.
 
 Since I don't have Sublime, but the FOSS equivalent - atom, I made this guide detailing the small differences of setting up SFTP on it. Atom is more enjoyable to work in than gedit on UMich's Linux computers (you should still get familiar with gedit though) and keeps things looking pretty while you build them.
